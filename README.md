@@ -1,41 +1,111 @@
-# Chatbot
-MaaMate
+Maa-Mate – The Emotional Chatbot
+Project Overview
+Maa-Mate is an AI-powered emotional chatbot designed to detect emotions from text and provide emotional support, mindfulness exercises, mood-based music, and stress-relief features.
 
-1. Emotion Recognition & Response Personalization
-The chatbot should detect emotions like happiness, sadness, anger, fear, anxiety, and stress based on the user’s messages.
-It should adapt its responses based on the detected emotion (e.g., offering comfort for sadness, motivation for stress, excitement for happiness).
+Problem Statement
+Many individuals struggle with emotional well-being and lack access to immediate support or guidance. Maa-Mate aims to bridge this gap by offering a virtual emotional companion that understands users' moods and provides comforting interactions.
 
-2. Conversation Flow & Engagement
-Casual Chat Mode: For users who just want a friendly conversation.
-Deep Conversation Mode: For users feeling overwhelmed and needing emotional support.
-Daily Check-ins: The chatbot can ask, "How are you feeling today?" and track emotions over time.
+Key Features
+Emotion Detection – Analyzes text input to determine the user’s emotional state.
 
-3. Comfort & Support Features
-Motivational Quotes & Encouragement when the user feels down.
-Journaling Feature where users can write about their feelings, and the bot can summarize their mood trends.
-Relaxation Techniques like breathing exercises or mindfulness activities when stress is detected.
-Humor Mode to share jokes, funny stories, or memes to lighten the mood.
+Mood-Based Music Player – Suggests songs based on the user’s current mood.
 
-4. Smart Suggestions Based on Mood
-If the user is stressed, the bot can suggest meditation, a short break, or positive affirmations.
-If the user is lonely, it can suggest conversation starters or ask personal-interest-based questions.
-If the user is happy, the bot can celebrate with them and encourage sharing good news.
+AI-Powered Chatbot – Engages in supportive, uplifting conversations.
 
-5. Safe & Non-Judgmental Space
-The chatbot should assure users that it's a judgment-free, safe space for expressing their emotions.
-It should avoid toxic positivity (e.g., not forcing users to "just be happy" but acknowledging their feelings instead).
-If serious distress is detected, it should recommend talking to a trusted person or seeking professional help.
+Mood Tracker & Analytics – Tracks mood trends over time and provides insights.
 
-6. Fun & Interactive Features
-Music Recommendations based on mood.
-Personality Quizzes related to emotions.
-Storytelling Mode, where users can share how they feel, and the bot responds with an encouraging short story.
-Gratitude Practice, where the bot asks users to list three things they’re grateful for.
+Stress-Relief & Gamification – Includes relaxation exercises and interactive games.
 
-7. User Memory & Personalization
-The chatbot should remember past interactions (e.g., "Last time you were feeling anxious, are things better now?").
-It should adapt to users over time, recognizing frequent emotions and responding more thoughtfully.
+Multi-Modal Communication – Supports text and voice input for a personalized experience.
 
-7. Emergency & Help Features
-If the chatbot detects extreme distress or harmful thoughts, it should provide comforting responses and suggest reaching out to a trusted person or support services.
-It should never give harmful advice or pretend to be a therapist.
+Dependencies
+To ensure smooth execution, install the following dependencies:
+
+bash
+Copy
+Edit
+Python 3.9+
+Flask==2.2.3  
+TensorFlow==2.10.0  
+Transformers==4.26.1  
+NLTK==3.8.1  
+requests==2.28.1  
+SpeechRecognition==3.10.0  
+Flask-SocketIO==5.3.0  
+All dependencies can be installed using:
+
+bash
+Copy
+Edit
+pip install -r requirements.txt
+Setup Instructions
+1. Clone the Repository
+bash
+Copy
+Edit
+git clone https://github.com/yourusername/maa-mate.git
+cd maa-mate
+2. Create a Virtual Environment (Optional but Recommended)
+bash
+Copy
+Edit
+python -m venv venv
+source venv/bin/activate  # On macOS/Linux
+venv\Scripts\activate  # On Windows
+3. Install Dependencies
+bash
+Copy
+Edit
+pip install -r requirements.txt
+4. Set Up Environment Variables
+Create a .env file and add the following variables:
+
+ini
+Copy
+Edit
+OPENAI_API_KEY=your_api_key_here
+SECRET_KEY=your_secret_key_here
+5. Run the Application
+bash
+Copy
+Edit
+python app.py
+The chatbot will be accessible at http://127.0.0.1:5000/.
+
+6. Using Maa-Mate
+Enter a text input to chat with the AI.
+
+View emotion-based responses and support suggestions.
+
+Access the mood tracker and listen to recommended music.
+
+Team Members
+Anshika Nautiyal – AI & Backend Development
+
+[Teammate 1] – Frontend Development
+
+[Teammate 2] – UI/UX Design
+
+License
+This project is licensed under the MIT License.
+
+Contribution Guidelines
+We welcome contributions! To contribute:
+
+Fork the repository.
+
+Create a new branch (feature-xyz).
+
+Make your changes and commit them.
+
+Submit a pull request.
+
+Future Plans
+Enhance emotion detection accuracy using deep learning models.
+
+Improve chatbot memory retention for personalized conversations.
+
+Introduce guided meditation and relaxation exercises.
+
+Deploy a mobile version for easy accessibility.
+
