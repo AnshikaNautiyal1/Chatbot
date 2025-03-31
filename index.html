@@ -553,9 +553,11 @@
                             <div class="day-cell">Tue<span>😌</span></div>
                             <div class="day-cell">Wed<span>😢</span></div>
                             <div class="day-cell">Thu<span>😊</span></div>
-                            <div class="day-cell active">Fri<span>?</span></div>
-                            <div class="day-cell">Sat</div>
-                            <div class="day-cell">Sun</div>
+                            <div class="day-cell">Fri<span>🥰</span></div>
+                            <div class="day-cell">Sat<span>🤓</span></div>
+                            <div class="day-cell">sun<span>😝</span></div>
+                            <!-- <div class="day-cell">Sat</div>
+                            <div class="day-cell">Sun</div> -->
                         </div>
                     </div>
 
@@ -712,12 +714,47 @@
                 moodHistory.push(moodData);
                 localStorage.setItem('moodHistory', JSON.stringify(moodHistory));
                 
-                // Update UI
-                document.querySelector('.day-cell.active span').textContent = 
-                    getMoodEmoji(mood);
+                // Update UI elements
+                document.querySelector('.day-cell.active span').textContent = getMoodEmoji(mood);
                 
-                // Animate chart update
-                updateMoodChart();
+                // Update chart based on mood frequency
+                updateMoodChart(moodHistory);
+                
+                // Update insight message
+                updateInsight(mood);
+            }
+
+            function updateMoodChart(history) {
+                const moodCounts = {
+                    happy: 0, calm: 0, sad: 0, angry: 0, anxious: 0
+                };
+                
+                // Count mood frequencies
+                history.forEach(entry => {
+                    if (moodCounts.hasOwnProperty(entry.mood)) {
+                        moodCounts[entry.mood]++;
+                    }
+                });
+                
+                // Update chart bars
+                Object.keys(moodCounts).forEach((mood, index) => {
+                    const percentage = (moodCounts[mood] / history.length) * 100 || 0;
+                    const bar = document.querySelectorAll('.chart-bar')[index];
+                    bar.style.height = `${Math.max(percentage, 20)}%`;
+                });
+            }
+
+            function updateInsight(currentMood) {
+                const insights = {
+                    happy: "You're feeling great! Keep up the positive energy!",
+                    calm: "Maintaining peace of mind is excellent for your well-being.",
+                    sad: "It's okay to feel down sometimes. Consider talking to someone you trust.",
+                    angry: "Take deep breaths and try some calming activities.",
+                    anxious: "Try some grounding exercises to help ease your anxiety."
+                };
+                
+                const insightCard = document.querySelector('.insight-card p');
+                insightCard.textContent = insights[currentMood] || "Track your mood regularly to see patterns.";
             }
 
             function getMoodEmoji(mood) {
@@ -731,12 +768,13 @@
                 return emojis[mood] || '?';
             }
 
-            function updateMoodChart() {
-                document.querySelectorAll('.chart-bar').forEach(bar => {
-                    const newHeight = Math.random() * 80 + 20;
-                    bar.style.setProperty('--target-height', `${newHeight}%`);
-                });
-            }
+            // Initialize mood tracking on page load
+            window.addEventListener('load', () => {
+                const moodHistory = JSON.parse(localStorage.getItem('moodHistory') || '[]');
+                if (moodHistory.length > 0) {
+                    updateMoodChart(moodHistory);
+                }
+            });
         </script>
     </section>
 
