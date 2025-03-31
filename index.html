@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #b19cd9, #d8bfd8);
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+        body::before {
+            content: "";
+            background: url('logo.png') no-repeat center center;
+            background-size: 300px 300px; /* Adjust size as needed */
+            opacity: 0.1; /* Adjust transparency */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        .header-container, .music-section, .hero, .features, .mood-swings, .meme-section {
+            animation: slideIn 0.5s ease forwards;
+        }
+        .music-section {
+            animation-delay: 0.3s; /* Delay for the music section */
+        }
+        .hero {
+            animation-delay: 0.1s; /* Delay for the hero section */
+        }
+        .features {
+            animation-delay: 0.2s; /* Delay for the features section */
+        }
+        .header-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            flex-direction: column;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .login-button, .signup-button {
+            background-color: #c49dd9;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+        }
+        .login-button:hover, .signup-button:hover {
+            background-color: #a97ecb;
+        }
+        .hero {
+            background: rgba(193, 140, 205, 0.8);
+            padding: 50px;
+            text-align: center;
+            border-radius: 10px;
+            margin: 20px;
+        }
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .feature {
+            background: rgba(170, 120, 200, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 30%;
+            color: white;
+        }
+        .contact-footer {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            font-size: 14px;
+        }
+        .mood-swings, .meme-section {
+            background: rgba(165, 110, 190, 0.8);
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            margin: 20px;
+            color: white;
+        }
+        .mood-options {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .mood-button {
+            background: #a97ecb;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+        }
+        .mood-button:hover {
+            background: #8b5fae;
+        }
+        .music-list, .meme-list {
+            list-style: none;
+            padding: 0;
+        }
+        .music-list li, .meme-list li {
+            padding: 10px;
+            font-size: 18px;
+        }
+        .meme-images img {
+            width: 100px;
+            height: auto;
+            margin: 10px;
+            border-radius: 10px;
+        }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px;
+            border-radius: 10px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button[type="submit"] {
+            background-color: #c49dd9;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button[type="submit"]:hover {
+            background-color: #a97ecb;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;  /* Increased from 400px */
+            margin: 0 auto;
+            padding: 30px;     /* Increased padding */
+        }
+
+        .feature {
+            width: 28%;        /* Adjusted from 30% */
+            min-height: 200px; /* Added minimum height */
+            padding: 25px;     /* Increased padding */
+        }
+
+        .oval-box {
+            padding: 40px;     /* Increased from 20px */
+            margin: 30px;      /* Increased from 20px */
+        }
+
+        .phone-container, .mood-phone-container {
+            width: 340px;      /* Increased from 300px */
+            height: 680px;     /* Increased from 600px */
+            padding: 20px;     /* Increased padding */
+        }
+
+        .playlist {
+            padding: 20px;     /* Increased from 10px */
+            margin-bottom: 20px; /* Increased from 10px */
+        }
+
+        .meme-images img {
+            width: 200px;      /* Increased from 100px */
+            margin: 15px;      /* Increased from 10px */
+        }
+
+        .modal-content {
+            width: 400px;      /* Increased from 300px */
+            padding: 30px;     /* Increased from 20px */
+        }
+
+        .mood-chart {
+            height: 200px;     /* Increased from 150px */
+        }
+
+        .insight-card {
+            padding: 20px;     /* Increased from 15px */
+            margin: 20px 0;    /* Added margin */
+        }
+
+        .player-controls button {
+            width: 50px;       /* Increased from 45px */
+            height: 50px;      /* Increased from 45px */
+        }
+
+        .play-pause {
+            width: 60px !important;  /* Increased from 55px */
+            height: 60px !important; /* Increased from 55px */
+        }
+    </style>
+</head>
+<body>
+    <header class="header-container">
+        <h1>Maa-Mate Platform</h1>
+        <div class="auth-buttons">
+            <button class="login-button" onclick="openLoginModal()">Log In</button>
+            <button class="signup-button" onclick="openSignupModal()">Sign Up</button>
+        </div>
+    </header>
+    
+    <section class="hero" id="hero-section">
+        <h2>Real-Time Emotional Support & Self-Care</h2>
+        <p>Personalized AI-powered support to track your mood and improve mental well-being.</p>
+    </section>
+
+    <section id="features" class="features">
+        <div class="feature">
+            <h3>Mood Tracking</h3>
+            <p>Track your emotions with real-time AI insights.</p>
+        </div>
+        <div class="feature">
+            <h3>Gamified Self-Care</h3>
+            <p>Engage with fun and interactive self-care activities.</p>
+        </div>
+        <div class="feature">
+            <h3>24/7 AI Support</h3>
+            <p>Get instant support anytime, anywhere.</p>
+        </div>
+    </section>
+
+    <section class="music-section oval-box">
+        <h2>Music to Cheer Your Mood</h2>
+        
+        <div class="phone-container">
+            <div class="phone-ui">
+                <div class="phone-notch"></div>
+                <div class="player-header">
+                    <h3>Music for Your Mood</h3>
+                </div>
+                
+                <div class="playlist-container">
+                    <div class="playlist-item pink-bg">
+                        <div class="music-icon">🎵</div>
+                        <div class="playlist-text">
+                            <h4>Calming Playlist</h4>
+                            <p>Gentle instrumentals to help you relax and de-stress</p>
+                        </div>
+                    </div>
+                    
+                    <div class="playlist-item green-bg">
+                        <div class="music-icon">🎵</div>
+                        <div class="playlist-text">
+                            <h4>Focus Playlist</h4>
+                            <p>Ambient tracks to improve concentration</p>
+                        </div>
+                    </div>
+                    
+                    <div class="playlist-item yellow-bg">
+                        <div class="music-icon">🎵</div>
+                        <div class="playlist-text">
+                            <h4>Uplifting Playlist</h4>
+                            <p>Energetic music to boost your mood</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="now-playing-ui">
+                    <div class="track-info">
+                        <h4>Peaceful Mind</h4>
+                        <p>Ambient Melodies</p>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div class="time-info">
+                        <span>1:24</span>
+                        <span>3:05</span>
+                    </div>
+                    <div class="player-controls">
+                        <button>⏮</button>
+                        <button class="play-pause">⏯</button>
+                        <button>⏭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add these styles -->
+        <style>
+            .phone-container {
+                width: 300px;
+                height: 600px;
+                margin: 30px auto;
+                background: #1a1a1a;
+                border-radius: 40px;
+                padding: 15px;
+                position: relative;
+                box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+                border: 8px solid #2a2a2a;
+            }
+
+            .phone-notch {
+                width: 150px;
+                height: 25px;
+                background: #1a1a1a;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                border-bottom-left-radius: 20px;
+                border-bottom-right-radius: 20px;
+            }
+
+            .phone-ui {
+                background: #ffffff;
+                height: 100%;
+                border-radius: 30px;
+                padding: 20px;
+                overflow: hidden;
+            }
+
+            .playlist-container {
+                margin: 20px 0;
+                overflow-y: auto;
+                max-height: 300px;
+            }
+
+            .playlist-item {
+                margin: 10px 0;
+                padding: 15px;
+                border-radius: 15px;
+                transition: all 0.3s ease;
+                cursor: pointer;
+            }
+
+            .playlist-item:hover {
+                transform: scale(1.02);
+            }
+
+            .now-playing-ui {
+                position: absolute;
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+                background: #f8f9fa;
+                padding: 20px;
+                border-radius: 20px;
+            }
+
+            .progress-bar {
+                height: 4px;
+                background: #eee;
+                border-radius: 2px;
+                margin: 15px 0;
+                overflow: hidden;
+            }
+
+            .progress-fill {
+                height: 100%;
+                background: #6B66FF;
+                width: 40%;
+                animation: progressMove 3s linear infinite;
+            }
+
+            @keyframes progressMove {
+                0% { width: 0%; }
+                100% { width: 100%; }
+            }
+
+            .player-controls button {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                border: none;
+                background: #6B66FF;
+                color: white;
+                font-size: 20px;
+                cursor: pointer;
+                transition: transform 0.2s;
+            }
+
+            .player-controls button:hover {
+                transform: scale(1.1);
+            }
+
+            .play-pause {
+                width: 55px !important;
+                height: 55px !important;
+            }
+        </style>
+
+        <ul class="music-list">
+            <li><a href="https://open.spotify.com/album/77bRRtXRI2g0e35tqeVs1X?si=55rbiLSHQI2VfUHFL4m2Yw" target="_blank">🎵 Relaxing Nature Sounds</a></li>
+            <li><a href="https://open.spotify.com/album/1Axdlh6vqdyyuy5CAnDuRB?si=ubqDcikESeG5uC5IFGGF8w" target="_blank">🎶 Upbeat Happy Vibes</a></li>
+            <li><a href="https://open.spotify.com/playlist/37i9dQZF1DWXe9gFZP0gtP?si=b5e1be0332de46bc" target="_blank">🎼 Calm & Soothing Piano</a></li>
+            <li><a href="https://open.spotify.com/playlist/37i9dQZF1DXaImRpG7HXqp?si=ab9d37b35035487f" target="_blank">🎧 Motivational Instrumentals</a></li>
+            <li><a href="https://open.spotify.com/playlist/37i9dQZF1DWSrtCzTmPimJ?si=b1b1de0b7612463d" target="_blank">🎷 Jazz for Relaxation</a></li>
+        </ul>
+    </section>
+
+    <style>
+        /* Update heading styles */
+        h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            color: #4a2c5d;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 2.8em;
+            font-weight: 600;
+            color: #5d3d70;
+            margin: 25px 0;
+        }
+
+        h3 {
+            font-size: 2.2em;
+            font-weight: 500;
+            color: #6b4d80;
+            margin: 20px 0;
+        }
+
+        h4 {
+            font-size: 1.8em;
+            font-weight: 500;
+            color: #7a5c90;
+            margin: 15px 0;
+        }
+
+        .player-header h3 {
+            font-size: 2em;
+            color: #4a2c5d;
+            margin-bottom: 20px;
+        }
+
+        .playlist-text h4 {
+            font-size: 1.4em;
+            color: #4a2c5d;
+            margin-bottom: 8px;
+        }
+
+        .track-info h4 {
+            font-size: 1.6em;
+            color: #4a2c5d;
+            margin: 10px 0;
+        }
+
+        /* Update section title spacing */
+        .music-section h2,
+        .mood-swings h2,
+        .meme-section h2 {
+            margin-bottom: 30px;
+        }
+
+        /* Update hero section heading */
+        .hero h2 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+
+    <section class="mood-swings">
+        <h2>Mood Swings</h2>
+        <p>Understand and manage mood swings with AI-powered insights and recommendations.</p>
+        
+        <div class="mood-phone-container">
+            <div class="mood-phone-ui">
+                <div class="phone-notch"></div>
+                <div class="mood-header">
+                    <h3>Mood Tracker</h3>
+                    <span class="view-icon">👁️</span>
+                </div>
+
+                <div class="mood-content">
+                    <div class="mood-prompt">
+                        <h4>How are you feeling today?</h4>
+                        <p>Track your mood to see patterns over time.</p>
+                        <div class="mood-selector">
+                            <button class="mood-emoji" data-mood="happy">😊</button>
+                            <button class="mood-emoji" data-mood="calm">😌</button>
+                            <button class="mood-emoji" data-mood="sad">😢</button>
+                            <button class="mood-emoji" data-mood="angry">😠</button>
+                            <button class="mood-emoji" data-mood="anxious">😰</button>
+                        </div>
+                    </div>
+
+                    <div class="weekly-tracker">
+                        <h4>This Week</h4>
+                        <div class="week-grid">
+                            <div class="day-cell">Mon<span>😊</span></div>
+                            <div class="day-cell">Tue<span>😌</span></div>
+                            <div class="day-cell">Wed<span>😢</span></div>
+                            <div class="day-cell">Thu<span>😊</span></div>
+                            <div class="day-cell active">Fri<span>?</span></div>
+                            <div class="day-cell">Sat</div>
+                            <div class="day-cell">Sun</div>
+                        </div>
+                    </div>
+
+                    <div class="mood-overview">
+                        <h4>Monthly Mood Overview</h4>
+                        <div class="mood-chart">
+                            <div class="chart-bar" style="height: 60%"><span>Happy</span></div>
+                            <div class="chart-bar" style="height: 80%"><span>Calm</span></div>
+                            <div class="chart-bar" style="height: 40%"><span>Sad</span></div>
+                            <div class="chart-bar" style="height: 30%"><span>Angry</span></div>
+                            <div class="chart-bar" style="height: 50%"><span>Anxious</span></div>
+                        </div>
+                    </div>
+
+                    <div class="mood-insights">
+                        <h4>Mood Insights</h4>
+                        <div class="insight-card">
+                            <span class="insight-icon">💡</span>
+                            <p>You tend to feel happier on weekends. Try adding more enjoyable activities during weekdays!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .mood-phone-container {
+                width: 300px;
+                height: 600px;
+                margin: 30px auto;
+                background: #1a1a1a;
+                border-radius: 40px;
+                padding: 15px;
+                position: relative;
+                box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+                border: 8px solid #2a2a2a;
+            }
+
+            .mood-selector {
+                display: flex;
+                justify-content: space-around;
+                margin: 20px 0;
+            }
+
+            .mood-emoji {
+                font-size: 24px;
+                padding: 10px;
+                border: none;
+                background: none;
+                cursor: pointer;
+                transition: transform 0.3s;
+            }
+
+            .mood-emoji:hover {
+                transform: scale(1.2);
+            }
+
+            .week-grid {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                gap: 5px;
+                margin: 15px 0;
+            }
+
+            .day-cell {
+                background: white;
+                padding: 10px 5px;
+                border-radius: 8px;
+                text-align: center;
+                font-size: 0.8em;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .day-cell.active {
+                border: 2px solid #6B66FF;
+            }
+
+            .mood-chart {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                height: 150px;
+                padding: 10px;
+                background: white;
+                border-radius: 15px;
+                margin: 15px 0;
+            }
+
+            .chart-bar {
+                width: 18%;
+                background: linear-gradient(to top, #FFD700, #FFA07A);
+                border-radius: 8px 8px 0 0;
+                transition: height 1s ease;
+                position: relative;
+                animation: growBar 1.5s ease-out;
+            }
+
+            @keyframes growBar {
+                from { height: 0; }
+                to { height: var(--target-height); }
+            }
+
+            .chart-bar span {
+                position: absolute;
+                bottom: -25px;
+                left: 50%;
+                transform: translateX(-50%);
+                font-size: 0.8em;
+                white-space: nowrap;
+            }
+
+            .insight-card {
+                background: white;
+                padding: 15px;
+                border-radius: 12px;
+                margin-top: 15px;
+                display: flex;
+                gap: 10px;
+                align-items: flex-start;
+                animation: slideIn 0.5s ease;
+            }
+
+            @keyframes slideIn {
+                from {
+                    transform: translateX(-100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        </style>
+
+        <script>
+            document.querySelectorAll('.mood-emoji').forEach(button => {
+                button.addEventListener('click', () => {
+                    const mood = button.getAttribute('data-mood');
+                    updateMoodTracking(mood);
+                });
+            });
+
+            function updateMoodTracking(mood) {
+                const today = new Date();
+                const moodData = {
+                    mood: mood,
+                    date: today.toISOString()
+                };
+                
+                // Save to localStorage
+                let moodHistory = JSON.parse(localStorage.getItem('moodHistory') || '[]');
+                moodHistory.push(moodData);
+                localStorage.setItem('moodHistory', JSON.stringify(moodHistory));
+                
+                // Update UI
+                document.querySelector('.day-cell.active span').textContent = 
+                    getMoodEmoji(mood);
+                
+                // Animate chart update
+                updateMoodChart();
+            }
+
+            function getMoodEmoji(mood) {
+                const emojis = {
+                    happy: '😊',
+                    calm: '😌',
+                    sad: '😢',
+                    angry: '😠',
+                    anxious: '😰'
+                };
+                return emojis[mood] || '?';
+            }
+
+            function updateMoodChart() {
+                document.querySelectorAll('.chart-bar').forEach(bar => {
+                    const newHeight = Math.random() * 80 + 20;
+                    bar.style.setProperty('--target-height', `${newHeight}%`);
+                });
+            }
+        </script>
+    </section>
+
+        
+    <section class="meme-section">
+        <h2>Mood-Boosting Memes</h2>
+        <div class="meme-grid">
+            <div class="meme-card">
+                <img src="memes/work-rage.jpg" alt="Work Rage Meme">
+                <div class="meme-caption">When you've got a deep rage burning inside you but you've got to act nice because you're at work... 😅</div>
+            </div>
+            <div class="meme-card">
+                <img src="memes/vacation-return.jpg" alt="Back from Vacation Meme">
+                <div class="meme-caption">When you get back from vacation and have to face the reality of going back to work tomorrow 😩</div>
+            </div>
+            <div class="meme-card">
+                <img src="memes/bipolar-mood.jpg" alt="Mood Swing Meme">
+                <div class="meme-caption">them: are you bipolar? me: of course not also me every 5 minutes: 😢❤️</div>
+            </div>
+            <div class="meme-card">
+                <img src="memes/hello-kitty.jpg" alt="Hello Kitty Plans Meme">
+                <div class="meme-caption">Me heading to meet my friends for the plans I made when I was in a good mood 🎈</div>
+            </div>
+            <div class="meme-card">
+                <img src="memes/monday-mood.jpg" alt="Monday Mood Meme">
+                <div class="meme-caption">When you had a good weekend, and Monday walks up and... 😤</div>
+            </div>
+        </div>
+
+        <style>
+            .meme-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 25px;
+                padding: 20px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .meme-card {
+                background: white;
+                border-radius: 15px;
+                overflow: hidden;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                transition: transform 0.3s ease;
+                cursor: pointer;
+            }
+
+            .meme-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .meme-card img {
+                width: 100%;
+                height: 300px;
+                object-fit: cover;
+                border-bottom: 2px solid #f0f0f0;
+            }
+
+            .meme-caption {
+                padding: 15px;
+                text-align: center;
+                font-size: 1.1em;
+                color: #4a2c5d;
+                background: rgba(255, 255, 255, 0.9);
+            }
+
+            @media (max-width: 768px) {
+                .meme-grid {
+                    grid-template-columns: 1fr;
+                    padding: 10px;
+                }
+
+                .meme-card img {
+                    height: 250px;
+                }
+            }
+        </style>
+    </section>
+    <div class="container">
+        <h2>Music for Your Mood</h2>
+    
+        <div class="playlist calming">
+            <strong>Calming Playlist</strong>
+            <p>Gentle instrumentals to help you relax and de-stress</p>
+        </div>
+        <div class="playlist focus">
+            <strong>Focus Playlist</strong>
+            <p>Ambient tracks to improve concentration and productivity</p>
+        </div>
+        <div class="playlist uplifting">
+            <strong>Uplifting Playlist</strong>
+            <p>Energetic music to boost your mood and motivation</p>
+        </div>
+    
+        <div class="now-playing">
+            <h3>Now Playing</h3>
+            <strong>Peaceful Mind</strong>
+            <p>Ambient Melodies</p>
+            <p>Duration: 1:24 / 3:05</p>
+            <div>
+                <button>&larr;</button>
+                <button>&#9654;</button>
+                <button>&rarr;</button>
+            </div>
+        </div>
+    
+        <img src="data:image/png;base64,YOUR_IMAGE_BASE64_STRING_HERE" alt="Music App Image">
+    </div>
+    
+
+    <footer class="contact-footer">
+        <p>Contact us at <a href="mailto:support@mentalwellness.ai">support@mentalwellness.ai</a></p>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>Log In</h2>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Log In</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSignupModal()">&times;</span>
+            <h2>Sign Up</h2>
+            <form id="signupForm" onsubmit="handleSignup(event)">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openLoginModal() {
+            document.getElementById('loginModal').style.display = 'block';
+        }
+        function closeLoginModal() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+        function openSignupModal() {
+            document.getElementById('signupModal').style.display = 'block';
+        }
+        function closeSignupModal() {
+            document.getElementById('signupModal').style.display = 'none';
+        }
+        function handleLogin(event) {
+            event.preventDefault();
+            // Handle login logic here
+            alert('Logged in successfully!');
+            closeLoginModal();
+        }
+        function handleSignup(event) {
+            event.preventDefault();
+            // Handle signup logic here
+            alert('Signed up successfully!');
+            closeSignupModal();
+        }
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('loginModal')) {
+                closeLoginModal();
+            }
+            if (event.target == document.getElementById('signupModal')) {
+                closeSignupModal();
+            }
+        }
+    </script>
+</body>
+</html>
