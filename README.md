@@ -79,8 +79,8 @@ The chatbot will be accessible at **http://127.0.0.1:5000/**.
 
 ## Team Members  
 - **Anshika Nautiyal** – AI & Backend Development  
-- **[Teammate 1]** – Frontend Development  
-- **[Teammate 2]** – UI/UX Design  
+- **Shreya Bansal** – Frontend Development  
+- **Aditya Uniyal** – UI/UX Design  
 
 ---
 
