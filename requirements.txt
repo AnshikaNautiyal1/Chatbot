@@ -1,0 +1,8 @@
+Python 3.9+
+Flask==2.2.3  
+TensorFlow==2.10.0  
+Transformers==4.26.1  
+NLTK==3.8.1  
+requests==2.28.1  
+SpeechRecognition==3.10.0  
+Flask-SocketIO==5.3.0  
