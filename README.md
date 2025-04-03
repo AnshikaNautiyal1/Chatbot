@@ -104,6 +104,7 @@ We welcome contributions! To contribute:
 - Introduce guided meditation and relaxation exercises.  
 - Deploy a mobile version for easy accessibility.
 - Future Scope of Maa-Mate in the Corporate Sector
+- 
 Maa-Mate can transform workplace well-being by monitoring employee emotions through AI-powered facial recognition. By analyzing stress levels in real-time, it provides HR with valuable insights to ensure a healthier work environment.
 
 Organizations can benefit through:
