@@ -94,11 +94,17 @@
             color: white;
         }
         .contact-footer {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-            font-size: 14px;
-        }
+            position: absolute; /* Change from fixed to absolute */
+        left: 0;
+        bottom: 0; /* Keep it at the bottom */
+        width: 100%; /* Make it full width */
+        font-size: 14px;
+        text-align: center; /* Center the text */
+        padding: 10px 0; /* Add some padding */
+        background-color: rgba(255, 255, 255, 0.8); /* Optional: Add a background color */
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
+    }
+        
         .mood-swings, .meme-section {
             background: rgba(165, 110, 190, 0.8);
             padding: 30px;
@@ -276,10 +282,11 @@
             <h3>Mood Tracking</h3>
             <p>Track your emotions with real-time AI insights.</p>
         </div>
-        <div class="feature">
+        <div class="feature" onclick="window.open('https://gamifylist.com/goal/self', '_blank')">
             <h3>Gamified Self-Care</h3>
             <p>Engage with fun and interactive self-care activities.</p>
         </div>
+        
         <div class="feature">
             <h3>24/7 AI Support</h3>
             <p>Get instant support anytime, anywhere.</p>
@@ -777,40 +784,143 @@
             });
         </script>
     </section>
+    <section class="health-tracking">
+        <div class="period-phone-container">
+            <div class="period-ui">
+                <div class="phone-notch"></div>
+                <h3>Period Care</h3>
 
-        
+                <div class="cycle-status">
+                    <div class="day-counter">Day 3</div>
+                    <p>Next period in 25 days</p>
+                </div>
+
+                <div class="symptoms-grid">
+                    <button>🤕 Cramps</button>
+                    <button>😴 Tired</button>
+                    <button>🌡️ Bloating</button>
+                    <button>😊 Mood</button>
+                    <button>🫂 Anxiety</button>
+                    <button>💪 Body Ache</button>
+                </div>
+
+                <div class="care-tips">
+                    <h4>Today's Care Tips</h4>
+                    <div class="tip-item">🫖 Drink warm herbal tea</div>
+                    <div class="tip-item">🧘‍♀️ Try gentle yoga</div>
+                    <div class="tip-item">🛁 Take a warm bath</div>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .period-phone-container {
+                width: 340px;
+                height: 680px;
+                margin: 30px auto;
+                background: #1a1a1a;
+                border-radius: 40px;
+                padding: 15px;
+                position: relative;
+                box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+                border: 8px solid #2a2a2a;
+            }
+
+            .period-ui {
+                background: #fff0f5;
+                height: 100%;
+                border-radius: 30px;
+                padding: 20px;
+                overflow: hidden;
+            }
+
+            .cycle-status {
+                text-align: center;
+                margin: 30px 0;
+            }
+
+            .day-counter {
+                font-size: 3em;
+                color: #ff69b4;
+                font-weight: bold;
+                margin: 10px 0;
+            }
+
+            .symptoms-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                margin: 20px 0;
+            }
+
+            .symptoms-grid button {
+                padding: 25px;
+                border: none;
+                border-radius: 10px;
+                background: #ffb6c1;
+                color: #4a2c5d;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .symptoms-grid button:hover {
+                background: #ff69b4;
+                color: white;
+                transform: translateY(-2px);
+            }
+
+            .care-tips {
+                background: rgba(255, 182, 193, 0.2);
+                padding: 15px;
+                border-radius: 15px;
+                margin-top: 20px;
+            }
+
+            .tip-item {
+                background: white;
+                padding: 12px;
+                margin: 10px 0;
+                border-radius: 10px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+        </style>
+    </section>   
     <section class="meme-section">
         <h2>Mood-Boosting Memes</h2>
         <div class="meme-grid">
             <div class="meme-card">
-                <img src="memes/work-rage.jpg" alt="Work Rage Meme">
-                <div class="meme-caption">When you've got a deep rage burning inside you but you've got to act nice because you're at work... 😅</div>
+                <img src="https://static01.nyt.com/images/2022/01/31/crosswords/31meme-wordplay/31meme-wordplay-mediumSquareAt3X.png" alt="Wordplay Meme">
+                <div class="meme-caption">How to avoid stress at work: 1. Don't go to work. 🛏️</div>
             </div>
             <div class="meme-card">
-                <img src="memes/vacation-return.jpg" alt="Back from Vacation Meme">
-                <div class="meme-caption">When you get back from vacation and have to face the reality of going back to work tomorrow 😩</div>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5DoZHrtI1JEX3kbQ2n8sowXWnV9kRwOzyjQ&s" alt="Paintbrush Therapy Meme">
+                <div class="meme-caption">If you follow the paintbrush with your eyes while not moving your head, it forces you to use EMDR which is a therapeutic technique to calm anxiety/panic. Watching fish swim causes the same effect. 🎨</div>
             </div>
             <div class="meme-card">
-                <img src="memes/bipolar-mood.jpg" alt="Mood Swing Meme">
-                <div class="meme-caption">them: are you bipolar? me: of course not also me every 5 minutes: 😢❤️</div>
+                <img src="https://www.dakotatrauma.com/wp-content/uploads/2022/09/Screen-Shot-2022-09-06-at-10.50.15-AM.jpg" alt="99 Problems Meme">
+                <div class="meme-caption">I've got 99 problems and 86 of them are completely made up scenarios in my head that I'm stressing about for absolutely no logical reason. 🤯</div>
             </div>
             <div class="meme-card">
-                <img src="memes/hello-kitty.jpg" alt="Hello Kitty Plans Meme">
-                <div class="meme-caption">Me heading to meet my friends for the plans I made when I was in a good mood 🎈</div>
+                <img src="https://media.makeameme.org/created/this-is-so-191eb6a234.jpg" alt="Free Trial Meme">
+                <div class="meme-caption">When the free trial asks for credit card information 🏃‍♂️</div>
             </div>
             <div class="meme-card">
-                <img src="memes/monday-mood.jpg" alt="Monday Mood Meme">
-                <div class="meme-caption">When you had a good weekend, and Monday walks up and... 😤</div>
+                <img src="data:image/jpeg;base64,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" alt="Tuesday Nails Meme">
+                <div class="meme-caption">When you cut your nails on Tuesday - Le Yamraaj: Yahi baatein to baad me yaad aayengi 💅</div>
+            </div>
+            <div class="meme-card">
+                <img src="https://i.pinimg.com/736x/92/e7/5d/92e75d86056819e12b7bb9539401fc31.jpg" alt="always happen in iddle class family">
+                <div class="meme-caption"> When you show your mom only one picture and she starts scrolling to others pictures also. Mom be like:😎</div>     
             </div>
         </div>
 
         <style>
             .meme-grid {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 25px;
-                padding: 20px;
-                max-width: 1200px;
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 30px;
+                padding: 25px;
+                max-width: 1400px;
                 margin: 0 auto;
             }
 
@@ -829,9 +939,11 @@
 
             .meme-card img {
                 width: 100%;
-                height: 300px;
-                object-fit: cover;
+                height: 400px;
+                object-fit: contain;
+                background: #f5f5f5;
                 border-bottom: 2px solid #f0f0f0;
+                padding: 10px;
             }
 
             .meme-caption {
@@ -854,40 +966,10 @@
             }
         </style>
     </section>
-    <div class="container">
-        <h2>Music for Your Mood</h2>
-    
-        <div class="playlist calming">
-            <strong>Calming Playlist</strong>
-            <p>Gentle instrumentals to help you relax and de-stress</p>
-        </div>
-        <div class="playlist focus">
-            <strong>Focus Playlist</strong>
-            <p>Ambient tracks to improve concentration and productivity</p>
-        </div>
-        <div class="playlist uplifting">
-            <strong>Uplifting Playlist</strong>
-            <p>Energetic music to boost your mood and motivation</p>
-        </div>
-    
-        <div class="now-playing">
-            <h3>Now Playing</h3>
-            <strong>Peaceful Mind</strong>
-            <p>Ambient Melodies</p>
-            <p>Duration: 1:24 / 3:05</p>
-            <div>
-                <button>&larr;</button>
-                <button>&#9654;</button>
-                <button>&rarr;</button>
-            </div>
-        </div>
-    
-        <img src="data:image/png;base64,YOUR_IMAGE_BASE64_STRING_HERE" alt="Music App Image">
-    </div>
     
 
     <footer class="contact-footer">
-        <p>Contact us at <a href="mailto:support@mentalwellness.ai">support@mentalwellness.ai</a></p>
+        <p>Contact us at <a href="mailto:maamatehelp@gmail.com">maamatehelp@gmail.com</a></p>
     </footer>
 
     <!-- Login Modal -->
