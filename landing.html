@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maa-Mate - Your Emotional Support</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Maa-Mate</h1>
+        <p>Your AI-powered emotional support chatbot</p>
+    </header>
+
+    <section class="features">
+        <div class="feature">
+            <h2>💬 AI Chat Support</h2>
+            <p>Get emotional support and guidance anytime.</p>
+        </div>
+        <div class="feature">
+            <h2>📊 Mood Tracking</h2>
+            <p>Track and analyze your emotions over time.</p>
+        </div>
+        <div class="feature">
+            <h2>🎵 Music Therapy</h2>
+            <p>Personalized music to match your mood.</p>
+        </div>
+    </section>
+
+    <div class="button-container">
+        <a href="{{ url_for('index') }}">
+            <button class="start-button">Start Chatting</button>
+        </a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Maa-Mate. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
