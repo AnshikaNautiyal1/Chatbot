@@ -10,7 +10,8 @@ body {
 }
 
 /* Header Styling */
-header {
+header 
+{
     padding: 50px;
     color: white;
     font-size: 1.5em;
